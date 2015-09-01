@@ -10,7 +10,7 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$twig = new Twig_Environment( new Twig_Loader_String() );
 		$twig->addExtension( new Megumi\WP\Twig_Extension() );
 
-		$content = $twig->render('{{ var | esc_html }}', array('var' => '<strong>'));
+		$content = $twig->render( '{{ var | esc_html }}', array( 'var' => '<strong>' ) );
 		$this->assertSame( '&lt;strong&gt;', $content );
 	}
 
@@ -22,7 +22,7 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$twig = new Twig_Environment( new Twig_Loader_String() );
 		$twig->addExtension( new Megumi\WP\Twig_Extension() );
 
-		$content = $twig->render('{{ var | esc_attr }}', array('var' => '<strong>'));
+		$content = $twig->render( '{{ var | esc_attr }}', array( 'var' => '<strong>' ) );
 		$this->assertSame( '&lt;strong&gt;', $content );
 	}
 
@@ -34,7 +34,7 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$twig = new Twig_Environment( new Twig_Loader_String() );
 		$twig->addExtension( new Megumi\WP\Twig_Extension() );
 
-		$content = $twig->render('{{ var | esc_textarea }}', array('var' => '<strong>'));
+		$content = $twig->render( '{{ var | esc_textarea }}', array( 'var' => '<strong>' ) );
 		$this->assertSame( '&lt;strong&gt;', $content );
 	}
 
@@ -46,7 +46,7 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$twig = new Twig_Environment( new Twig_Loader_String() );
 		$twig->addExtension( new Megumi\WP\Twig_Extension() );
 
-		$content = $twig->render('{{ var | esc_url }}', array('var' => 'example.com'));
+		$content = $twig->render( '{{ var | esc_url }}', array( 'var' => 'example.com' ) );
 		$this->assertSame( 'http://example.com', $content );
 	}
 
@@ -58,7 +58,7 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$twig = new Twig_Environment( new Twig_Loader_String() );
 		$twig->addExtension( new Megumi\WP\Twig_Extension() );
 
-		$content = $twig->render('{{ var | esc_js }}', array('var' => '<strong>'));
+		$content = $twig->render( '{{ var | esc_js }}', array( 'var' => '<strong>' ) );
 		$this->assertSame( '&lt;strong&gt;', $content );
 	}
 }
