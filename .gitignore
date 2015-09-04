@@ -1,6 +1,10 @@
 .grunt
+.travis.yml
+bin
 composer.phar
 node_modules
 npm-debug.log
+phpunit.xml
 release
+tests
 vendor
