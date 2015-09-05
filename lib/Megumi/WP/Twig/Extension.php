@@ -16,6 +16,57 @@ class Twig_Extension extends \Twig_Extension
 		);
 	}
 
+	public function getFunctions()
+	{
+		$conditional_functions = array(
+			'is_home',
+			'is_front_page',
+			'is_single',
+			'is_sticky',
+			'is_page',
+			'is_category'
+			'is_tag',
+			'is_tax',
+			'is_author',
+			'is_date',
+			'is_year',
+			'is_month',
+			'is_day',
+			'is_time',
+			'is_new_day',
+			'is_archive',
+			'is_search',
+			'is_404',
+			'is_paged',
+			'is_attachment',
+			'is_singular',
+			'is_feed',
+			'is_user_logged_in',
+			'in_category',
+		);
+
+		$functions = array();
+		foreach ( $conditional_functions as $function ) {
+			$functions[] = new \Twig_SimpleFunction( $function, function( $args = null ) use ( $function ) {
+				return call_user_func( $function, $args );
+			} );
+		}
+
+		$disabeld_functions = array(
+			'constant',
+			'include',
+			'source',
+		);
+
+		foreach ( $disabeld_functions as $function ) {
+			$functions[] = new \Twig_SimpleFunction( $function, function() use ( $function ) {
+				return $function . '() is disabled.';
+			} );
+		}
+
+		return $functions;
+	}
+
 	public function esc_html( $content )
 	{
 		return esc_html( $content );
