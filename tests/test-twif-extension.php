@@ -141,11 +141,6 @@ class Twig_Extension_Test extends WP_UnitTestCase
 		$this->go_to( '/' ); // is_home() should be true
 		$content = $twig->render( $template );
 		$this->assertSame( 'is_single() is false', $content );
-
-		$template = "{{ is_page('".$page_id."') }}";
-		$this->go_to( '/?p=' . $post_id ); // is_home() should be true
-		$content = $twig->render( $template );
-		$this->assertSame( 'is_single() is true', $content );
 	}
 
 	/**
