@@ -12,6 +12,7 @@ class Twig_Extension extends \Twig_Extension
 			new \Twig_SimpleFilter( 'esc_textarea', array( $this, 'esc_textarea' ), array( 'is_safe' => array( 'html' ) ) ),
 			new \Twig_SimpleFilter( 'esc_url', array( $this, 'esc_url' ), array( 'is_safe' => array( 'html' ) ) ),
 			new \Twig_SimpleFilter( 'esc_js', array( $this, 'esc_js' ), array( 'is_safe' => array( 'html' ) ) ),
+			new \Twig_SimpleFilter( 'apply_filters', array( $this, 'apply_filters' ) ),
 		);
 	}
 
@@ -38,6 +39,11 @@ class Twig_Extension extends \Twig_Extension
 	public function esc_js( $content )
 	{
 		return esc_js( $content );
+	}
+
+	public function apply_filters( $content, $filter )
+	{
+		return apply_filters( $filter, $content );
 	}
 
 	public function getName()
