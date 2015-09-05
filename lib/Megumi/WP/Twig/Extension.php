@@ -19,37 +19,43 @@ class Twig_Extension extends \Twig_Extension
 	public function getFunctions()
 	{
 		$conditional_functions = array(
-			'is_home',
-			'is_front_page',
-			'is_single',
-			'is_sticky',
-			'is_page',
-			'is_category'
-			'is_tag',
-			'is_tax',
-			'is_author',
-			'is_date',
-			'is_year',
-			'is_month',
-			'is_day',
-			'is_time',
-			'is_new_day',
-			'is_archive',
-			'is_search',
-			'is_404',
-			'is_paged',
-			'is_attachment',
-			'is_singular',
-			'is_feed',
-			'is_user_logged_in',
-			'in_category',
+			'is_home' => array( 'allow_args' => false ),
+			'is_front_page' => array( 'allow_args' => false ),
+			'is_single' => array( 'allow_args' => false ),
+			'is_sticky' => array( 'allow_args' => false ),
+			'is_page' => array( 'allow_args' => false ),
+			'is_category' => array( 'allow_args' => false ),
+			'is_tag' => array( 'allow_args' => false ),
+			'is_tax' => array( 'allow_args' => false ),
+			'is_author' => array( 'allow_args' => false ),
+			'is_date' => array( 'allow_args' => false ),
+			'is_year' => array( 'allow_args' => false ),
+			'is_month' => array( 'allow_args' => false ),
+			'is_day' => array( 'allow_args' => false ),
+			'is_time' => array( 'allow_args' => false ),
+			'is_new_day' => array( 'allow_args' => false ),
+			'is_archive' => array( 'allow_args' => false ),
+			'is_search' => array( 'allow_args' => false ),
+			'is_404' => array( 'allow_args' => false ),
+			'is_paged' => array( 'allow_args' => false ),
+			'is_attachment' => array( 'allow_args' => false ),
+			'is_singular' => array( 'allow_args' => false ),
+			'is_feed' => array( 'allow_args' => false ),
+			'is_user_logged_in' => array( 'allow_args' => false ),
+			'in_category' => array( 'allow_args' => true ),
 		);
 
 		$functions = array();
-		foreach ( $conditional_functions as $function ) {
-			$functions[] = new \Twig_SimpleFunction( $function, function( $args = null ) use ( $function ) {
-				return call_user_func( $function, $args );
-			} );
+		foreach ( $conditional_functions as $function => $args ) {
+			if ( empty( $args['allow_args'] ) ) {
+				$functions[] = new \Twig_SimpleFunction( $function, function() use ( $function ) {
+					return call_user_func( $function );
+				} );
+			} else {
+				$functions[] = new \Twig_SimpleFunction( $function, function( $args = null ) use ( $function ) {
+					return call_user_func( $function, $args );
+				} );
+			}
 		}
 
 		$disabeld_functions = array(
