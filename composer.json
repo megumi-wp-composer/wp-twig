@@ -2,7 +2,8 @@
     "name": "megumi/wp-twig",
     "license": "GPL2",
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.3",
+        "twig/twig": "~1.0"
     },
     "authors": [
         {
@@ -14,8 +15,5 @@
         "psr-0": {
             "Megumi": "lib/"
         }
-    },
-    "require": {
-        "twig/twig": "~1.0"
     }
 }
